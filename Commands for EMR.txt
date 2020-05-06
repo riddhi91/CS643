@@ -1,0 +1,54 @@
+*********************** Commands for EMR ************************
+
+sudo yum update -y
+python --version
+python --version
+
+
+sudo pip install --upgrade pip
+
+sudo nano /etc/sudoers
+/*find below line with 
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
+Just add :/usr/local/bin to this PATH
+*/
+sudo pip install findspark
+sudo pip install pyspark
+
+python train.py 
+
+hadoop fs -put TrainingDataset.csv /
+hadoop fs -put ValidationDataset.csv /
+hadoop fs -ls 
+
+set file path  
+hdfs:///TrainingDataset.csv
+hdfs:///ValidationDataset.csv
+
+#Get/download model from HDFS to local file system
+hadoop fs -get wine_train_model
+
+#deleted wine model
+hadoop fs -rm -r wine_train_model
+
+
+**************Docker Command**************************************************
+
+sudo yum install -y docker
+sudo service docker start
+sudo docker build . -f Dockerfile
+
+sudo docker build . -f Dockerfile -t prediction
+sudo docker run -t prediction
+docker build . -f Dockerfile1 -t ams285/prediction       <== create docker hub images
+
+docker image push ams285/prediction                      <== send image to docker container
+
+sudo docker images
+sudo docker system prune -a
+docker login
+sudo chmod 666 /var/run/docker.sock <== login failed command
+docker logout
+
+
+******************************************************************************
